@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="$(SolutionDir)..\SteamAppsDir.props" />
+
+  <PropertyGroup>
+    <AssemblyName>MonsterTrainManifestExtension</AssemblyName>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+
+    <!--
+      Following line, along with the manual reference on mscorlib and netstandard allows us to use the game's .NET CLR,
+      which prevents some issues and surprises.
+    -->
+    <DisableImplicitFrameworkReferences>True</DisableImplicitFrameworkReferences>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="rebuild.trigger" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="rebuild.trigger">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="mscorlib">
+      <HintPath>$(SteamAppsDir)\common\Monster Train\MonsterTrain_Data\Managed\mscorlib.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="netstandard">
+      <HintPath>$(SteamAppsDir)\common\Monster Train\MonsterTrain_Data\Managed\netstandard.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(SteamAppsDir)\common\Monster Train\MonsterTrain_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>$(SteamAppsDir)\common\Monster Train\MonsterTrain_Data\Managed\System.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <HintPath>$(SteamAppsDir)\common\Monster Train\MonsterTrain_Data\Managed\System.Core.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(SteamAppsDir)\common\Monster Train\MonsterTrain_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+	<Reference Include="UnityEngine.JSONSerializeModule">
+		<HintPath>$(SteamAppsDir)\common\Monster Train\MonsterTrain_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
+		<Private>false</Private>
+	</Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>$(SteamAppsDir)\common\Monster Train\MonsterTrain_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>$(SteamAppsDir)\common\Monster Train\MonsterTrain_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(SteamAppsDir)\common\Monster Train\MonsterTrain_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>$(SteamAppsDir)\common\Monster Train\MonsterTrain_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(SteamAppsDir)\common\Monster Train\MonsterTrain_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>$(SteamAppsDir)\common\Monster Train\MonsterTrain_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreModule">
+      <HintPath>$(SteamAppsDir)\common\Monster Train\MonsterTrain_Data\Managed\UnityEngine.TextCoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>$(SteamAppsDir)\common\Monster Train\MonsterTrain_Data\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(SteamAppsDir)\workshop\content\1102190\2187468759\BepInEx\core\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>$(SteamAppsDir)\workshop\content\1102190\2187468759\BepInEx\core\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="BepInEx.Harmony">
+      <HintPath>$(SteamAppsDir)\workshop\content\1102190\2187468759\BepInEx\core\BepInEx.Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="PowerShell -NoProfile -ExecutionPolicy unrestricted -File packaging.ps1 -PackageTarget $(SolutionDir)..\package -SolutionDir $(SolutionDir) -ProjectDir $(ProjectDir) -TargetDir $(TargetDir) -SteamAppsDir $(SteamAppsDir)&#xD;&#xA;IF %25ERRORLEVEL%25 NEQ 0 exit /b %25ERRORLEVEL%25&#xD;&#xA;" />
+  </Target>
+</Project>
