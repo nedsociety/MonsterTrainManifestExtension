@@ -9,7 +9,7 @@ Create a mod that allows following features:
 
 The major advantage of these changes would be:
 
-1. Allow progressions on base game like XP, achievements, compendiums and Covenant ranks even if the game is modded.
+1. Allow progressions on base game like ~~XP,~~ achievements, compendiums and Covenant ranks even if the game is modded.
 2. Allow progressions on mod clans, if they adapt themselves into the `MetagameSaveData` class.
 
 ## New options
@@ -34,43 +34,39 @@ Along with the official `CosmeticOnly` field, we'll have some new fields. For th
     - Note that even if your clan isn't included in the combo, consider things like Blank Pages should change the outcome based on its text. I'm not sure of its implementation though.
   - Also control the warning dialogs ("modded run won't be uploaded") related to it.
 
-- `BlockCreatingCustomChallenge: true | false` (default: `true`)
+- `"BlockCreatingCustomChallenge": true | false` (default: `true`)
 
   - Block creating a new custom challenge.
   - This feature is, as mentioned in *The Effects of Mods*, bugged in the base game. I'm uncertain if the fix should be included as an unofficial patch with this project.
 
-- `BlockClanExp: true | false` (default: `true`)
-
-  - Block clans from gaining exp and leveling.
-
-- `BlockHellRush: true | false` (default: `true`)
+- `"BlockHellRush": true | false` (default: `true`)
 
   - Block Hell Rush.
 
-- `BlockAchievements: true | false` (default: `true`)
+- `"BlockAchievements": true | false` (default: `true`)
 
   - Block achievements.
 
-- `BlockWinStreaks: true | false` (default: `true`)
+- `"BlockWinStreaks": true | false` (default: `true`)
 
   - Block all win streaks related features.
   - If enabled, also show "progression blocked" warning label at the clan selection screen, over the win streak label.
   - If disabled, also highlight topped win streaks at the game over screen.
 
-- `BlockCovenantRank: true | false` (default: `true`)
+- `"BlockCovenantRank": true | false` (default: `true`)
 
   - Block advancing to a new covenant rank, and prevent the highest covenant rank for each clan combo to be updated.
   - If enabled, also show "progression blocked" warning label at the clan selection screen, over the Covanent rank history label.
 
-- `BlockCompendiumVictoryTracking: true | false` (default: `true`)
+- `"BlockCompendiumVictoryTracking": true | false` (default: `true`)
 
   - Block clan combo victories / divine victories to be recorded onto the compendium.
 
-- `BlockCompendiumCardTracking: true | false` (default: `true`)
+- `"BlockCompendiumCardTracking": true | false` (default: `true`)
 
   - Block cards being encountered / mastered / divine mastered on the compendium.
 
-- `BlockLocalStats: true | false` (default: `true`)
+- `"BlockLocalStats": true | false` (default: `true`)
 
   - Block local run statistics to be updated.
   - If disabled, also highlight topped statistics at the game over screen.

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="$(SolutionDir)..\SteamAppsDir.props" />
+  <Import Project="$(SolutionDir)SteamAppsDir.props" />
 
   <PropertyGroup>
     <AssemblyName>MonsterTrainManifestExtension</AssemblyName>
@@ -12,6 +12,7 @@
       which prevents some issues and surprises.
     -->
     <DisableImplicitFrameworkReferences>True</DisableImplicitFrameworkReferences>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
