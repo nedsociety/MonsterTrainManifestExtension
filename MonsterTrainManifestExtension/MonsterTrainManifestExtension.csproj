@@ -13,6 +13,9 @@
     -->
     <DisableImplicitFrameworkReferences>True</DisableImplicitFrameworkReferences>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageProjectUrl></PackageProjectUrl>
+    <RepositoryUrl>https://github.com/nedsociety/MonsterTrainManifestExtension</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -92,5 +95,9 @@
       <HintPath>$(SteamAppsDir)\workshop\content\1102190\2187468759\BepInEx\core\BepInEx.Harmony.dll</HintPath>
       <Private>false</Private>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(SolutionDir)LICENSE.md" Pack="true" PackagePath="LICENSE.md" />
   </ItemGroup>
 </Project>
