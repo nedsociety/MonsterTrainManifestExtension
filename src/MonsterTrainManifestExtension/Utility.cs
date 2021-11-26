@@ -47,7 +47,7 @@ namespace MonsterTrainManifestExtension
         private static bool Stub_AllowAdvancedProgression(RunType runType, int occurence, object processorInstance)
         {
             return (runType == RunType.Class)
-                   && Traverse.Create(processorInstance).Method("AreAnyModsNonCosmetic", occurence).GetValue<bool>();
+                   && !Traverse.Create(processorInstance).Method("AreAnyModsNonCosmetic", occurence).GetValue<bool>();
         }
 
         // Replace ShinyShoe.AppManager.PlatformServices.AreAnyModsNonCosmetic() calls within

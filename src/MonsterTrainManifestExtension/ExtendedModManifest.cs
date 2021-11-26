@@ -24,7 +24,6 @@ namespace MonsterTrainManifestExtension
             public ReportRunSummaryAsModdedEnum ReportRunSummaryAsModded;
             public bool BlockCreatingCustomChallenge;
             public bool BlockHellRush;
-            public bool BlockClanExp;
             public bool BlockAchievements;
             public bool BlockWinStreaks;
             public bool BlockCovenantRank;
@@ -71,7 +70,6 @@ namespace MonsterTrainManifestExtension
                     ),
                     BlockCreatingCustomChallenge = lhs.BlockCreatingCustomChallenge || rhs.BlockCreatingCustomChallenge,
                     BlockHellRush = lhs.BlockHellRush || rhs.BlockHellRush,
-                    BlockClanExp = lhs.BlockClanExp || rhs.BlockClanExp,
                     BlockAchievements = lhs.BlockAchievements || rhs.BlockAchievements,
                     BlockWinStreaks = lhs.BlockWinStreaks || rhs.BlockWinStreaks,
                     BlockCovenantRank = lhs.BlockCovenantRank || rhs.BlockCovenantRank,
@@ -89,7 +87,6 @@ namespace MonsterTrainManifestExtension
                     ReportRunSummaryAsModded = ReportRunSummaryAsModdedEnum.Never,
                     BlockCreatingCustomChallenge = false,
                     BlockHellRush = false,
-                    BlockClanExp = false,
                     BlockAchievements = false,
                     BlockWinStreaks = false,
                     BlockCovenantRank = false,
@@ -107,7 +104,6 @@ namespace MonsterTrainManifestExtension
                     ReportRunSummaryAsModded = ReportRunSummaryAsModdedEnum.Always,
                     BlockCreatingCustomChallenge = true,
                     BlockHellRush = true,
-                    BlockClanExp = true,
                     BlockAchievements = true,
                     BlockWinStreaks = true,
                     BlockCovenantRank = true,
@@ -125,7 +121,6 @@ namespace MonsterTrainManifestExtension
                     ReportRunSummaryAsModded = JsonMapEnumOrDefault(content, "ReportRunSummaryAsModded", ReportRunSummaryAsModdedEnum.Always),
                     BlockCreatingCustomChallenge = JsonMapValueOrDefault(content, "BlockCreatingCustomChallenge", true),
                     BlockHellRush = JsonMapValueOrDefault(content, "BlockHellRush", true),
-                    BlockClanExp = JsonMapValueOrDefault(content, "BlockClanExp", true),
                     BlockAchievements = JsonMapValueOrDefault(content, "BlockAchievements", true),
                     BlockWinStreaks = JsonMapValueOrDefault(content, "BlockWinStreaks", true),
                     BlockCovenantRank = JsonMapValueOrDefault(content, "BlockCovenantRank", true),
@@ -141,7 +136,6 @@ namespace MonsterTrainManifestExtension
                        $"- ReportRunSummaryAsModded: {ReportRunSummaryAsModded}\n" +
                        $"- BlockCreatingCustomChallenge: {BlockCreatingCustomChallenge}\n" +
                        $"- BlockHellRush: {BlockHellRush}\n" +
-                       $"- BlockClanExp: {BlockClanExp}\n" +
                        $"- BlockAchievements: {BlockAchievements}\n" +
                        $"- BlockWinStreaks: {BlockWinStreaks}\n" +
                        $"- BlockCovenantRank: {BlockCovenantRank}\n" +
@@ -212,6 +206,18 @@ namespace MonsterTrainManifestExtension
             catch (Exception e) when (e is FileNotFoundException || e is DirectoryNotFoundException)
             {
                 // A mod without a proper modmanifest.json. Apply default for extendedFields.
+                return new ExtendedModManifest
+                {
+                    baseFields = modDefinition,
+                    extendedFields = ExtendedModManifest.ExtendedFields.DefaultForNonCosmetic()
+                };
+            }
+            catch (Exception e)
+            {
+                // Other parsing errors?
+                MonsterTrainManifestExtension.Logger.LogError(
+                    $"Error while parsing modmanifest.json for mod {modDefinition.ModIdentifier}:\n{e}"
+                );
                 return new ExtendedModManifest
                 {
                     baseFields = modDefinition,

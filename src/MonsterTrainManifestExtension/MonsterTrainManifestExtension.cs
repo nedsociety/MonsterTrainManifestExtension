@@ -29,7 +29,7 @@ namespace MonsterTrainManifestExtension
             if (ShinyShoe.AppManager.BuildNumber != MT_BUILD_NUMBER)
             {
                 Warn(
-                    $"Some of your mods require a framework called MonsterTrainManifestExtension, which expects Monster Train version ##{MT_BUILD_NUMBER}. The framework should be updated to enable advanced features like progressions.",
+                    $"Some of your mods require a framework called MonsterTrainManifestExtension, which expects Monster Train version ##{MT_BUILD_NUMBER}. The framework should be updated to enable advanced features like full progressions.",
                     $"Expected MT build {MT_BUILD_NUMBER} but encountered {ShinyShoe.AppManager.BuildNumber}; ManifestExtension is inactivated.");
                 return;
             }

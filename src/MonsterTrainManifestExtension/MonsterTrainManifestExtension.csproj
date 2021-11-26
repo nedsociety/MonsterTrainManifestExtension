@@ -15,16 +15,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="rebuild.trigger" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="rebuild.trigger">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
@@ -102,8 +92,4 @@
       <Private>false</Private>
     </Reference>
   </ItemGroup>
-
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="PowerShell -NoProfile -ExecutionPolicy unrestricted -File packaging.ps1 -PackageTarget $(SolutionDir)..\package -SolutionDir $(SolutionDir) -ProjectDir $(ProjectDir) -TargetDir $(TargetDir) -SteamAppsDir $(SteamAppsDir)&#xD;&#xA;IF %25ERRORLEVEL%25 NEQ 0 exit /b %25ERRORLEVEL%25&#xD;&#xA;" />
-  </Target>
 </Project>
