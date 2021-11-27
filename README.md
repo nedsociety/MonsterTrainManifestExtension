@@ -10,7 +10,7 @@ Enable fine-grained control of blocked contents and features for Monster Train m
 
 1. Add this NuGet package to your project: https://www.nuget.org/packages/MonsterTrainManifestExtension
 
-2. Modify your `modmanifest.json` according to [this documentation](docs/Extending%20modmanifest.json.md). This is an example of modified `modmanifest.json `file for [Arcadian Clan](https://github.com/Tempus/Disciple-Monster-Train) mod:
+2. Modify your `modmanifest.json` according to [this documentation](docs/Extending%20modmanifest.json.md). This is an example of modified `modmanifest.json` file for [Arcadian Clan](https://github.com/Tempus/Disciple-Monster-Train) mod:
 
    ```json
    {
@@ -57,10 +57,10 @@ But if you'd like to step further and extensively modify the `MetagameSaveData` 
               // ...
    ```
 
-3. From your `Awake()`, or `Initialize()` if you're using Trainworks, check if `MonsterTrainManifestExtension.Instance.Enabled` is true. This property indicates whether you're safe to modify the save file or not.
+3. From your `Awake()`, or `Initialize()` if you're using Trainworks, check if `MonsterTrainManifestExtension.MonsterTrainManifestExtension.Instance.Enabled` is true. This property indicates whether you're safe to modify the save file or not.
 
    ```csharp
-   if (MonsterTrainManifestExtension.Instance.Enabled)
+   if (MonsterTrainManifestExtension.MonsterTrainManifestExtension.Instance.Enabled)
    {
        // Modify the MetagameSaveData class or instance. 
        // You can access the instance via Trainworks.Managers.ProviderManager.SaveManager.GetMetagameSave()
