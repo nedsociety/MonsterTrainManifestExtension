@@ -41,7 +41,7 @@ Enable fine-grained control of blocked contents and features for Monster Train m
 
 ## Advanced usage
 
-The `BranchMetagameSave` option isolates the modded progress file. That alone already protects the players from having a modded save which is potentially invalid on the base game synced over the Steam Cloud.
+The `BranchMetagameSave` option isolates the modded progress file. That alone already protects the players from having a save with modded data which might result in an invalid save on the base game synced over the Steam Cloud.
 
 But if you'd like to step further and extensively modify the `MetagameSaveData` class in MT, you can follow these steps to ensure it's safe to modify them:
 
